@@ -6,17 +6,13 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.PrintingResultHandler;
-import wiremock.org.apache.commons.lang3.RandomUtils;
 import wiremock.org.apache.commons.lang3.StringUtils;
 
 import javax.annotation.Resource;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
@@ -30,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @since 0.0.1
  */
 @AutoConfigureMockMvc
-@ActiveProfiles("test")
+//@ActiveProfiles("test")
 @RunWith(SpringRunner.class)
 @AutoConfigureWireMock(stubs = "classpath:/mock", port = 8081)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -46,7 +42,7 @@ public class WireMockControllerTest {
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
-        Assert.assertTrue("预期不一致", StringUtils.equals(result,"{\"name\":\"TestName\",\"pass\":\"TestPass\"}"));
+        Assert.assertTrue("预期不一致", StringUtils.equals(result, "{\"name\":\"TestName\",\"pass\":\"TestPass\"}"));
     }
 
 }
